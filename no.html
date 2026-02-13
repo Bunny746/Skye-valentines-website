@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are You Sure Skye? 💔</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="sad-page">
+    <div class="rain-container" id="rain-container"></div>
+    
+    <div class="container">
+        <div class="sad-card" id="sadCard">
+            <div class="sad-level-1" id="level1">
+                <div class="mega-pusheen sad-shake">
+                    <img src="images/pusheen-sad.png" alt="Sad Pusheen" class="sad-pusheen-big">
+                </div>
+                <h1 class="sad-title">Are you sure Skye? </h1>
+                <p class="sad-text">Joshy is already getting sad</p>
+                <div class="buttons-sad">
+                    <button class="btn btn-yes-small" onclick="window.location.href='yes.html'">
+                        <img src="images/pusheen-happy.png" class="btn-pusheen" alt="happy">
+                        I CHANGED MY MIND JOSHY
+                    </button>
+                    <button class="btn btn-no-small" id="noBtn1">
+                        <img src="images/pusheen-cry.png" class="btn-pusheen" alt="cry">
+                        Still..no
+                    </button>
+                </div>
+            </div>
+
+            <div class="sad-level-2" id="level2" style="display: none;">
+                <div class="mega-pusheen crying">
+                    <img src="images/pusheen-cry.png" alt="Crying Pusheen" class="sad-pusheen-big">
+                </div>
+                <h1 class="sad-title">PLEASE SKYE</h1>
+                <p class="sad-text">Look at Pusheen... she's crying now...</p>
+                <div class="tear-rain">💧💧💧</div>
+                <div class="buttons-sad">
+                    <button class="btn btn-yes-small" onclick="window.location.href='yes.html'">
+                        <img src="images/pusheen-love.gif" class="btn-pusheen" alt="love">
+                        heh i was kidding ofcourse i say yes to joshy
+                    </button>
+                    <button class="btn btn-no-smaller" id="noBtn2">
+                        <img src="images/pusheen-sad.png" class="btn-pusheen" alt="sad">
+                        No...
+                    </button>
+                </div>
+            </div>
+
+            <div class="sad-level-3" id="level3" style="display: none;">
+                <div class="mega-pusheen devastated">
+                    <img src="images/pusheen-cry.png" alt="Devastated Pusheen" class="sad-pusheen-big grayscale">
+                </div>
+                <h1 class="sad-title">SKYE PLEASE</h1>
+                <p class="sad-text">my heart..hurting
+                <div class="broken-hearts">💔🥀</div>
+                <div class="buttons-sad">
+                    <button class="btn btn-yes-big" onclick="window.location.href='yes.html'">
+                        <img src="images/pusheen-party.gif" class="btn-pusheen" alt="party">
+                        YES YES YES I LOVE JOSHY SO MUCH I WANT TO BE HIS VALENTINE
+                    </button>
+                    <button class="btn btn-no-tiny" id="noBtn3">
+                        💔
+                    </button>
+                </div>
+            </div>
+
+            <div class="sad-level-final" id="levelFinal" style="display: none;">
+                <div class="mega-pusheen dead">
+                    <img src="images/pusheen-sad.png" alt="Dead Pusheen" class="sad-pusheen-big dark">
+                </div>
+                <h1 class="sad-title">I give up...</h1>
+                <p class="sad-text">i have lost all hope..</p>
+                <p class="final-plea">i can still save this..</p>
+                <button class="btn btn-yes-giant" onclick="window.location.href='yes.html'">
+                    <img src="images/pusheen-love.gif" class="btn-pusheen-big" alt="love">
+                    CLICK YES TO BE MINEEEE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create rain effect
+        function createRain() {
+            const container = document.getElementById('rain-container');
+            for (let i = 0; i < 30; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'rain-drop';
+                drop.innerHTML = '💧';
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+                drop.style.animationDelay = Math.random() * 2 + 's';
+                drop.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                container.appendChild(drop);
+            }
+        }
+        createRain();
+
+        // Popup messages that get sadder
+        const popups = [
+            "Are you really sure?",
+            "Think about it again...",
+            "jOSHY is crying!",
+            "My heart hurts... 💔",
+            "Please reconsider baby",
+            "Don't break my heart",
+            "One more chance? ",
+            "Pretty please with cherry on top? ",
+            "I'll be the best Valentine ever! ",
+            "You're making Pusheen sad! "
+        ];
+
+        let currentLevel = 1;
+
+        // Level 1 No button
+        document.getElementById('noBtn1').addEventListener('click', function() {
+            alert(popups[0]);
+            alert(popups[1]);
+            
+            document.getElementById('level1').style.display = 'none';
+            document.getElementById('level2').style.display = 'block';
+            document.getElementById('level2').classList.add('fade-in');
+            currentLevel = 2;
+            
+            // More rain
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createRain, i * 100);
+            }
+        });
+
+        // Level 2 No button
+        document.getElementById('noBtn2').addEventListener('click', function() {
+            alert(popups[2]);
+            alert(popups[3]);
+            alert(popups[4]);
+            
+            document.getElementById('level2').style.display = 'none';
+            document.getElementById('level3').style.display = 'block';
+            document.getElementById('level3').classList.add('fade-in');
+            currentLevel = 3;
+            
+            // Thunder effect
+            document.body.style.animation = 'thunder 2s ease-in-out';
+        });
+
+        // Level 3 No button - runs away!
+        const noBtn3 = document.getElementById('noBtn3');
+        noBtn3.addEventListener('mouseover', function() {
+            const x = Math.random() * (window.innerWidth - 200);
+            const y = Math.random() * (window.innerHeight - 100);
+            this.style.position = 'fixed';
+            this.style.left = x + 'px';
+            this.style.top = y + 'px';
+            this.style.transition = 'all 0.3s ease';
+        });
+
+        noBtn3.addEventListener('click', function() {
+            alert(popups[5]);
+            alert(popups[6]);
+            alert(popups[7]);
+            alert(popups[8]);
+            alert(popups[9]);
+            
+            document.getElementById('level3').style.display = 'none';
+            document.getElementById('levelFinal').style.display = 'block';
+            document.getElementById('levelFinal').classList.add('fade-in');
+            
+            // Final dramatic effect
+            document.body.style.background = 'linear-gradient(to bottom, #2a2a2a, #1a1a1a)';
+        });
+    </script>
+</body>
+</html>

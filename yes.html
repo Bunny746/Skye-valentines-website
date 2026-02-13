@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAY! Happy Valentine's Day Skye! 💖</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="happy-page">
+    <div class="floating-elements" id="floating-container"></div>
+    <div class="confetti-container" id="confetti-container"></div>
+    
+    <div class="container">
+        <div class="happy-card">
+            <div class="sparkles">✨🌸✨🌸✨</div>
+            
+            <div class="mega-pusheen happy-bounce">
+                <img src="images/pusheen-party.gif" alt="Party Pusheen" class="party-pusheen-big">
+            </div>
+            
+            <h1 class="happy-title">HEHEHEE U SAID YES I LAV U SO MUCH</h1>
+            <h2 class="happy-subtitle">Happy Valentine's Day!</h2>
+            
+            <p class="happy-message">You just made me the happiest MAN in the whole world like u always do baby</p>
+            
+            <div class="love-letter">
+                <p>Dear Skye,</p>
+                <p>You are my everything baby Thank you for being my Valentine and the love of my life</p>
+                <div class="signature">Love, Joshy MWAH</div>
+            </div>
+            
+            <div class="pusheen-parade">
+                <img src="images/pusheen-cookie.gif" class="parade-pusheen" alt="Pusheen">
+                <img src="images/pusheen-love.gif" class="parade-pusheen" alt="Pusheen">
+                <img src="images/pusheen-party.gif" class="parade-pusheen" alt="Pusheen">
+                <img src="images/pusheen-cookie.gif" class="parade-pusheen" alt="Pusheen">
+                <img src="images/pusheen-love.gif" class="parade-pusheen" alt="Pusheen">
+            </div>
+            
+            <button class="btn btn-restart" onclick="location.href='index.html'">
+                <img src="images/pusheen-heart.png" class="btn-pusheen" alt="heart">
+                Play Again heh.
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating elements
+        const pusheenImages = ['images/pusheen-cookie.gif', 'images/pusheen-love.gif', 'images/pusheen-party.gif', 'images/pusheen-heart.png'];
+        const container = document.getElementById('floating-container');
+        
+        for (let i = 0; i < 30; i++) {
+            const el = document.createElement('div');
+            el.className = 'float-item';
+            const img = document.createElement('img');
+            img.src = pusheenImages[Math.floor(Math.random() * pusheenImages.length)];
+            el.appendChild(img);
+            el.style.left = Math.random() * 100 + '%';
+            el.style.animationDuration = (Math.random() * 5 + 8) + 's';
+            el.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(el);
+        }
+
+        // Mega confetti explosion
+        function createMegaConfetti() {
+            const shapes = ['images/pusheen-cookie.gif', 'images/pusheen-love.gif', 'images/pusheen-party.gif', 'images/pusheen-heart.png', 'images/pusheen-happy.png'];
+            const colors = ['#ff69b4', '#ffb6c1', '#ffc0cb', '#ffe4e9', '#fff'];
+            
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti-item';
+                    
+                    if (Math.random() > 0.3) {
+                        const img = document.createElement('img');
+                        img.src = shapes[Math.floor(Math.random() * shapes.length)];
+                        img.style.width = (Math.random() * 40 + 30) + 'px';
+                        confetti.appendChild(img);
+                    } else {
+                        confetti.style.width = '15px';
+                        confetti.style.height = '15px';
+                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    }
+                    
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    document.getElementById('confetti-container').appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 7000);
+                }, i * 20);
+            }
+        }
+
+        // Heart rain
+        function createHeartRain() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'falling-heart';
+                    heart.innerHTML = '💖';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 100);
+            }
+        }
+
+        createMegaConfetti();
+        createHeartRain();
+        setInterval(createHeartRain, 3000);
+    </script>
+</body>
+</html>
